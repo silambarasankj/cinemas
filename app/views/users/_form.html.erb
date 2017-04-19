@@ -1,0 +1,33 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+</div>
+
+
+<% for role in User::ROLES %>
+  <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+  <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
+<% end %>
+<%= hidden_field_tag "user[roles][]", "" %>
+
+<div class="field">
+  <%= f.label :password %><br>
+  <%= f.password_field :password, placeholder: "Leave blank if unchanged" %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

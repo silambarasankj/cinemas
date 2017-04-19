@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Marital status</th>
+      <th>Mobile no</th>
+      <th>State</th>
+      <th>District</th>
+      <th>Address</th>
+      <% if can? :read, User %>
+      <th>Show</th>
+      <% end %>
+      <% if can? :update, User %>
+      <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, User %>
+      <th>destroy</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.user_email %></td>
+        <td><%= profile.name %></td>
+        <td><%= profile.gender %></td>
+        <td><%= profile.marital_status %></td>
+        <td><%= profile.mobile_no %></td>
+        <td><%= profile.state_name %></td>
+        <td><%= profile.district_name %></td>
+        <td><%= profile.address %></td>
+        <% if can? :read, User %>
+        <td><%= link_to 'Show', profile %></td>
+        <% end %>
+        <% if can? :update, Profile %>
+        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+        <% end %>
+        <% if can? :destroy, Profile %>
+        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile', new_profile_path %>

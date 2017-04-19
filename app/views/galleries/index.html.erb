@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Galleries</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>User</th>
+      <th>Image</th>
+      <th>Purpose type</th>
+      <th>Status</th>
+      <% if can? :read, Gallery %>
+      <th>Show</th>
+      <% end %>
+      <% if can? :update, Gallery %>
+      <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, Gallery %>
+      <th>Destroy</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @galleries.each do |gallery| %>
+      <tr>
+        <td><%= gallery.user %></td>
+        <td><%= gallery.image %></td>
+        <td><%= gallery.purpose_type %></td>
+        <td><%= gallery.status %></td>
+        <% if can? :read, Gallery %>
+        <td><%= link_to 'Show', gallery %></td>
+        <% end %>
+        <% if can? :edit, Gallery %>
+        <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
+        <% end %>
+        <% if can? :destroy, Gallery %>
+        <td><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gallery', new_gallery_path %>
