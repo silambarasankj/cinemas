@@ -7,7 +7,7 @@ class Ability
         if user.has_role? :admin
             can :manage, :all
         else
-            can [:read],[Profile,Gallery], active: true, user_id: user.id
+            can [:read, :update],[Profile,Gallery,State,District], active: true, user_id: user.id
         end
 
     # Define abilities for the passed in user here. For example:

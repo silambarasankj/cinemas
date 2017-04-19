@@ -12,9 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :country_id %>
-    <%= f.text_field :country_id %>
-  </div>
+<%= collection_select(:state, :country_id, Country.all, :id, :name, {prompt: true}) %></div>
 
   <div class="field">
     <%= f.label :name %>
