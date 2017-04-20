@@ -1,0 +1,3 @@
+console.log('testing of js.erb')
+$("#profile_district_id").empty()
+  .append("<%= j(render(partial: "districts", collection: @districts, as: :district)) %>")

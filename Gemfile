@@ -57,3 +57,4 @@ gem "devise"
 gem 'cancancan'
 gem 'rails_best_practices'
 gem "paperclip", "~> 5.0.0"
+gem "rspec-rails", :group => [:development, :test]

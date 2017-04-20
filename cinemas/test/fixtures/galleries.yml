@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  image: 
+  purpose_type: 1
+  status: 1
+
+two:
+  user: two
+  image: 
+  purpose_type: 1
+  status: 1

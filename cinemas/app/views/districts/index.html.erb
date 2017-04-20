@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Districts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Name</th>
+      <th>Status</th>
+      <% if can? :read, District %>
+      <th>Show</th>
+      <% end %>
+      <% if can? :update, District %>
+      <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, District %>
+      <th>Destroy</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @districts.each do |district| %>
+      <tr>
+        <td><%= district.state_name %></td>
+        <td><%= district.name %></td>
+        <td><%= district.status %></td>
+        <% if can? :read, District %>
+        <td><%= link_to 'Show', district %></td>
+        <% end %>
+        <% if can? :update, District %>
+        <td><%= link_to 'Edit', edit_district_path(district) %></td>
+        <% end %>
+        <% if can? :destroy, District %>
+        <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New District', new_district_path %>

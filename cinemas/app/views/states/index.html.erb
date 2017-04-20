@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>States</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Name</th>
+      <th>Status</th>
+      <% if can? :read, State %>
+      <th>Show</th>
+      <% end %>
+      <% if can? :update, State %>
+      <th>Edit</th>
+      <% end %>
+      <% if can? :destroy, State %>
+      <th>Destroy</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @states.each do |state| %>
+      <tr>
+        <td><%= state.country_name %></td>
+        <td><%= state.name %></td>
+        <td><%= state.status %></td>
+
+       <% if can? :read, State %>
+      <td><%= link_to 'Show', state %></td>
+      <% end %>
+      <% if can? :update, State %>
+      <td><%= link_to 'Edit', edit_state_path(state) %></td>
+      <% end %>
+      <% if can? :destroy, State %>
+      <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+        
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New State', new_state_path %>

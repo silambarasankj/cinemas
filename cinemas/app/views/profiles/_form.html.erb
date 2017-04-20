@@ -1,0 +1,61 @@
+<%= form_for(profile) do |f| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :mobile_no %><br>
+  <%= f.text_field :mobile_no %>
+</div>
+
+<div class="field">
+  <%= f.label :gender %><br>
+ <%= f.radio_button(:gender, "Male") %> Male
+  <%= f.radio_button(:gender, "Female") %> Female
+</div>
+
+<div class="field">
+  <%= f.label :marital_status %><br>
+ <%= f.radio_button(:marital_status, "Single") %> Single
+  <%= f.radio_button(:marital_status, "Married") %> Married
+</div>
+
+<div class="field">
+<%= collection_select(:profile, :state_id, State.all, :id, :name, {prompt: true}) %></div>
+<div class="field">
+<%= collection_select(:profile, :district_id, District.all, :id, :name, {prompt: true}) %></div>
+
+<% if false %>
+
+<% end %>
+
+<% for skill in Skill.all %>
+  <%= check_box_tag "talents[skill_id][]", skill.id, false%>
+  <%= label_tag "talents_skill_#{skill.id}", skill.name.to_s.humanize %><br />
+<% end %>
+<%= hidden_field_tag "talents[skill_id][]", "" %>
+
+<div class="field">
+<%= collection_select(:talents, :skill_id, Skill.all, :id, :name, {prompt: true}) %></div>
+
+<div class="field">
+  <%= f.label :address %><br>
+  <%= f.text_area :address, cols: 20, rows: 10%>
+</div>
+
+ <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
